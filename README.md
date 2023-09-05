@@ -14,6 +14,7 @@
 
 - [ ] Read from a text file
 - [x] RNG Generation
+- [ ] Unicode-less support :(
 
 ## Libraries needed:
 - Tabulate
