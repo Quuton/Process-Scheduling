@@ -63,7 +63,21 @@ class Shortest_job_first_preemptive_manager(Base_manager):
             
             self.current_time += 1
         
-    
+class Priority_first_preemptive_manager(Base_manager):
+    def __init__(self, processes:list[Process]):
+        super().__init__(processes)
+
+    def process_job(self):
+        while not self.is_done():
+            priority = max([i for i in self.processes if i.is_available(self.current_time)], key = lambda x: x.priority, default = None)
+
+            if priority != None:
+                priority.make_progress()
+                self.process_history.append(priority.id)
+            else:
+                self.process_history.append(0)
+            
+            self.current_time += 1    
     
     
     

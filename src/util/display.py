@@ -3,7 +3,7 @@ from itertools import groupby
 from .string_tools import *
 
 MINIMUM_SIZE = 8
-MAXIMUM_SIZE = 30
+MAXIMUM_SIZE = 24
 SIZE_RANGE = MAXIMUM_SIZE - MINIMUM_SIZE
 EMPTY_STRING = ""
 def clusterise_process_history(processes:list[int]):

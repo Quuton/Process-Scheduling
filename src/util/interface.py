@@ -1,6 +1,8 @@
 import os
 import keyboard
 import time
+from .io import *
+
 class ListSelector(object):
     def __init__(self, option_list:list[str], message:str = None, confirmation:bool = False):
         self.option_list = option_list
@@ -29,6 +31,7 @@ class ListSelector(object):
                     self.option_index -= 1
                     ready = False
             elif key_event.event_type == keyboard.KEY_DOWN and key_event.name == 'enter':
+                os.system('cls' if os.name == 'nt' else 'clear')
                 flush_input()
                 return self.option_index
             
@@ -56,6 +59,23 @@ class ListSelector(object):
 
         print(temp)
 
-def flush_input():
-    _ = input()
+def numerical_input(message:str, min:int = 0, max:int = 9999):
+    flush_input()
+    while True:
+        x = 0
+        os.system('cls' if os.name == 'nt' else 'clear')
+        num = input(message)
+        if num.isnumeric():
+            x = int(num)
+
+            if (x >= min) and (x <= max):
+                return x
+            else: 
+                print("The numbers does not meet the bounds")
+                time.sleep(0.5)
+        else:
+            print("The input is invalid! Please use only numbers")
+            time.sleep(0.5)
+
+    
     

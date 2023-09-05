@@ -2,7 +2,7 @@ from src.process_tools.managers import *
 from src.util.objects import Process
 from src.util.display import *
 from tabulate import tabulate
-from src.util.interface import ListSelector
+from src.util.interface import *
 import time
 import random
 
@@ -18,16 +18,16 @@ def main():
 
     if (choice == 0):
         processes = [
-                Process(1, 0, 10),
-                Process(2, 3, 3),
-                Process(3, 6, 15),
-                Process(4, 12, 8),
-                Process(5, 16, 4),
-                Process(6, 21, 2)]
+                Process(1, 0, 10, 2),
+                Process(2, 3, 10, 3),
+                Process(3, 6, 10, 4),
+                Process(4, 12, 10, 5),
+                Process(5, 16, 10, 6),
+                Process(6, 21, 10, 7)]
     elif (choice == 1):
         print("How many processes do you want to create?")
     elif (choice == 2):
-        process_number = int(input("How many processes do you want to randomly generate?"))
+        process_number = numerical_input("How many processes do you want to randomly generate?", 0)
         arrival_selector = ListSelector(["Fully Random", "Processes tend to arrive in batches", "All processes arrive at the same time"], "How do you want processes to arrive?")
         arrival_config = arrival_selector.activate()
         burst_selector = ListSelector(["Fully Random", "Late arival processes tend to take longer", 
@@ -73,7 +73,7 @@ def main():
 
     # TEMPORARY TESTING, REMOVE THIS SHIT
     
-    manager = Shortest_job_first_preemptive_manager(processes)
+    manager = Priority_first_preemptive_manager(processes)
 
 
     clustered_history = clusterise_process_history(manager.get_process_history())
