@@ -69,7 +69,7 @@ class Priority_first_preemptive_manager(Base_manager):
 
     def process_job(self):
         while not self.is_done():
-            priority = max([i for i in self.processes if i.is_available(self.current_time)], key = lambda x: x.priority, default = None)
+            priority = min([i for i in self.processes if i.is_available(self.current_time)], key = lambda x: x.priority, default = None)
 
             if priority != None:
                 priority.make_progress()

@@ -13,12 +13,10 @@ def start():
 
     if (choice == 0):
         processes = [
-                Process(1, 0, 10, 2),
-                Process(2, 3, 10, 3),
-                Process(3, 6, 10, 4),
-                Process(4, 12, 10, 5),
-                Process(5, 16, 10, 6),
-                Process(6, 21, 10, 7)]
+                Process(1, 0, 7, 4),
+                Process(2, 2, 4, 3),
+                Process(3, 4, 1, 2),
+                Process(4, 5, 4, 1),]
     elif (choice == 1):
         print("How many processes do you want to create?")
     elif (choice == 2):
