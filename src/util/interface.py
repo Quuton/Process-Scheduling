@@ -2,7 +2,8 @@ import os
 import keyboard
 import time
 from .io import *
-
+RIGHT_ARROW_SYMBOL = '>'
+UPPER_LINE_FLOOR = '‾'
 class ListSelector(object):
     def __init__(self, option_list:list[str], message:str = None, confirmation:bool = False):
         self.option_list = option_list
@@ -49,11 +50,11 @@ class ListSelector(object):
 
         temp = ""
         if self.message:
-            temp += (self.message + "\n" + ("▔" * (len(self.message) + 5)) + "\n")
+            temp += (self.message + "\n" + (UPPER_LINE_FLOOR * (len(self.message) + 5)) + "\n")
 
         for index, option in enumerate(self.option_list):
             if self.option_index == index:
-                temp += (f"{'▶':<4}{option}\n")
+                temp += (f"{RIGHT_ARROW_SYMBOL:<4}{option}\n")
             else:
                 temp += (f" {option}\n")
 
