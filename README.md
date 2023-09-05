@@ -21,3 +21,10 @@
 ```
 pip install tabulate
 ```
+
+- Keyboard
+
+```
+pip install keyboard
+```
+
