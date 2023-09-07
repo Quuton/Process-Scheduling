@@ -6,12 +6,18 @@ from src.util.interface import *
 from src.util.io import load_process_configuration
 import time
 import random
+
 AUTHOR_NAME = "David Matthew Antonio"
 AUTHOR_SECTION = "BM2"
 EXCERCISE_DETAILS = "MP01 - SJF Preemptive"
 MPO_FILE_PATH = "MP01 Checker.txt"
+
+
 def start():
     processes = []
+    # Im not using this code since i may get grade deduction
+    # Ill re-integrate this code once im out of OS LAB
+
     # selector = ListSelector(["Read from a text file", "Create my processes", "Randomly generate processes"], "Choose an option for setup")
     # choice = selector.activate()
 
@@ -64,6 +70,7 @@ def start():
     #             burst_values.append(5)
 
     #     processes = [Process(i+1, arrival_values[i], burst_values[i]) for i in range(process_number)]
+    
     processes = load_process_configuration(MPO_FILE_PATH)
     print(f"Programmed by: {AUTHOR_NAME}")
     print(EXCERCISE_DETAILS)

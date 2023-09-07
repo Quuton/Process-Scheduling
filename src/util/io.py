@@ -22,7 +22,7 @@ def load_process_configuration(path:str) ->  list[Process]:
             processes.append(Process(index+1, arrival_values[index], burst_values[index], priority_values[index]))
 
     except Exception:
-        print("There is something wrong with the file format, aborting...")
+        print("There is something wrong with the file, please investigate the issue, now aborting...")
         time.sleep(2)
         exit()
     
