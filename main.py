@@ -11,7 +11,7 @@ def main():
 
     
         while True:
-            choice = input("Do you want to retry? [Y/N]")
+            choice = input("Do you want to run again? [Y/N]")
             if (choice == 'Y' or choice == 'y'):
                 os.system('cls' if os.name == 'nt' else 'clear')
                 break
