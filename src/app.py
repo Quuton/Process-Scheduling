@@ -92,12 +92,15 @@ def start():
     print("Gannt Chart")
     print(create_process_gannt_chart(clustered_history, True))
     stats = manager.get_process_stats()
+    table_data = stats.get("process_data")
+    table_data.append(["TOTAL", stats.get('turnover_sum', 0), stats.get('waiting_sum', 0)])
+    table_data.append(["AVERAGE", stats.get('turnover_average', 0), stats.get('waiting_average', 0)])
     print("Table")
-    print(tabulate(stats.get("process_data"), headers = ["Process ID", "Turnover Time", "Waiting Time"], tablefmt = "simple_grid", colalign = ["center", "center", "center"]))
-    print(f"Total Turnover Time: {stats.get('turnover_sum', 0)}")
-    print(f"Average Turnover Time: {stats.get('turnover_average', 0)}")
-    print(f"Total Waiting Time: {stats.get('waiting_sum', 0)}")
-    print(f"Average Waiting Time: {stats.get('waiting_average', 0)}")
+    print(tabulate(table_data, headers = ["PROCESS", "TURNAROUND TIME", "WAITING TIME"], tablefmt = "simple_grid", colalign = ["center", "center", "center"]))
+    # print(f"Total Turnover Time: {stats.get('turnover_sum', 0)}")
+    # print(f"Average Turnover Time: {stats.get('turnover_average', 0)}")
+    # print(f"Total Waiting Time: {stats.get('waiting_sum', 0)}")
+    # print(f"Average Waiting Time: {stats.get('waiting_average', 0)}")
 
 
 
@@ -110,6 +113,6 @@ def start():
 
 
     gannt_chart_text = "Gannt Chart\n" + create_process_gannt_chart(clustered_history) 
-    table_text = "Table\n" + tabulate(stats.get("process_data"), headers = ["Process ID", "Turnover Time", "Waiting Time"], tablefmt = "grid", colalign = ["center", "center", "center"])
+    table_text = "Table\n" + tabulate(table_data, headers = ["PROCESS", "TURNAROUND TIME", "WAITING TIME"], tablefmt = "grid", colalign = ["center", "center", "center"])
 
     mpo_checker_output(MPO_FILE_PATH, processs_config, header, process_information, gannt_chart_text, table_text)
