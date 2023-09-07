@@ -12,9 +12,9 @@
 
 ## Features
 
-- [ ] Read from a text file
+- [x] Read from a text file
 - [x] RNG Generation
-- [ ] Unicode-less support :(
+- [x] Unicode-less support :(
 
 ## Libraries needed:
 - Tabulate

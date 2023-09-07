@@ -2,8 +2,8 @@ from .objects import Process
 from itertools import groupby
 from .string_tools import *
 
-MINIMUM_SIZE = 8
-MAXIMUM_SIZE = 24
+MINIMUM_SIZE = 6
+MAXIMUM_SIZE = 26
 SIZE_RANGE = MAXIMUM_SIZE - MINIMUM_SIZE
 EMPTY_STRING = ""
 
@@ -68,7 +68,7 @@ def create_process_gannt_chart(clsuterised_process_history:list[list], unicode_s
         if (i[0] == 0):
             middle += f"{'IDLE':^{MINIMUM_SIZE + difference}}{MIDDLE_WALL}"
         else:
-            middle += f"{'PID ' + str(i[0]):^{MINIMUM_SIZE + difference}}{MIDDLE_WALL}"
+            middle += f"{'P' + str(i[0]):^{MINIMUM_SIZE + difference}}{MIDDLE_WALL}"
 
 
 
@@ -83,19 +83,22 @@ def create_process_gannt_chart(clsuterised_process_history:list[list], unicode_s
 
     return join_all_strings(ceiling, middle, bottom, label)
 
-def list_process_values(processes:list[Process]):
-    print(f"No. of Processes: {len(processes)}")
-    print("Arrival Time: ")
+def list_process_values(processes:list[Process]) -> str:
+    string_data = ""
+    string_data += (f"No. of Processes: {len(processes)}\n")
+    string_data += ("Arrival Time: \n")
     for process in processes:
-        print(f"P{process.id}: {process.arrival}")
-    print("\n", end=None)
+        string_data += (f"P{process.id}: {process.arrival}\n")
+    string_data += ("\n")
 
-    print("Burst Time: ")
+    string_data += ("Burst Time: \n")
     for process in processes:
-        print(f"P{process.id}: {process.burst}")
-    print("\n", end=None)
+        string_data += (f"P{process.id}: {process.burst}\n")
+    string_data += ("\n")
 
-    print("Priority Number: ")
+    string_data += ("Priority Number: \n")
     for process in processes:
-        print(f"P{process.id}: {process.priority}")
-    print("\n", end=None)
+        string_data += (f"P{process.id}: {process.priority}\n")
+    string_data += ("\n")
+
+    return string_data

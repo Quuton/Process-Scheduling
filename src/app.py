@@ -9,6 +9,7 @@ import random
 AUTHOR_NAME = "David Matthew Antonio"
 AUTHOR_SECTION = "BM2"
 EXCERCISE_DETAILS = "MP01 - SJF Preemptive"
+MPO_FILE_PATH = "MP01 Checker.txt"
 def start():
     processes = []
     # selector = ListSelector(["Read from a text file", "Create my processes", "Randomly generate processes"], "Choose an option for setup")
@@ -63,23 +64,38 @@ def start():
     #             burst_values.append(5)
 
     #     processes = [Process(i+1, arrival_values[i], burst_values[i]) for i in range(process_number)]
-    processes = load_process_configuration("MP01 Checker.txt")
+    processes = load_process_configuration(MPO_FILE_PATH)
     print(f"Programmed by: {AUTHOR_NAME}")
     print(EXCERCISE_DETAILS)
     print('\n', end=None)
 
-    # TEMPORARY TESTING, REMOVE THIS SHIT
+    print(list_process_values(processes))
     
-    manager = Shortest_job_first_manager(processes)
+    manager = Shortest_job_first_preemptive_manager(processes)
 
 
     clustered_history = clusterise_process_history(manager.get_process_history())
+    print("Gannt Chart")
     print(create_process_gannt_chart(clustered_history, True))
     stats = manager.get_process_stats()
+    print("Table")
     print(tabulate(stats.get("process_data"), headers = ["Process ID", "Turnover Time", "Waiting Time"], tablefmt = "simple_grid", colalign = ["center", "center", "center"]))
     print(f"Total Turnover Time: {stats.get('turnover_sum', 0)}")
     print(f"Average Turnover Time: {stats.get('turnover_average', 0)}")
     print(f"Total Waiting Time: {stats.get('waiting_sum', 0)}")
     print(f"Average Waiting Time: {stats.get('waiting_average', 0)}")
-    gannt_chart_text = create_process_gannt_chart(clustered_history) 
-    table_text = tabulate(stats.get("process_data"), headers = ["Process ID", "Turnover Time", "Waiting Time"], tablefmt = "simple_grid", colalign = ["center", "center", "center"])
+
+
+
+
+    # Set the content to write to MPO Checker
+    processs_config = get_mpo_process_lines(MPO_FILE_PATH)
+    header = f"Programmed by: {AUTHOR_NAME}\n{EXCERCISE_DETAILS}"
+    process_information = list_process_values(processes)
+
+
+
+    gannt_chart_text = "Gannt Chart\n" + create_process_gannt_chart(clustered_history) 
+    table_text = "Table\n" + tabulate(stats.get("process_data"), headers = ["Process ID", "Turnover Time", "Waiting Time"], tablefmt = "grid", colalign = ["center", "center", "center"])
+
+    mpo_checker_output(MPO_FILE_PATH, processs_config, header, process_information, gannt_chart_text, table_text)
