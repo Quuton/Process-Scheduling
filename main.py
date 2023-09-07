@@ -1,11 +1,7 @@
 from src.process_tools.managers import *
-from src.util.objects import Process
 from src.util.display import *
-from tabulate import tabulate
 from src.util.interface import *
 from src.app import start
-import time
-import random
 
 
 
@@ -13,10 +9,11 @@ def main():
     while True:
         start()
 
-        choice = input("Do you want to retry? [Y/N]")
-
+    
         while True:
+            choice = input("Do you want to retry? [Y/N]")
             if (choice == 'Y' or choice == 'y'):
+                os.system('cls' if os.name == 'nt' else 'clear')
                 break
             elif (choice == 'N' or choice == 'n'):
                 exit()
