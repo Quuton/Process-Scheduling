@@ -10,8 +10,20 @@ import random
 
 
 def main():
-    start()
-    _ = input("Press enter to exit")
+    while True:
+        start()
+
+        choice = input("Do you want to retry? [Y/N]")
+
+        while True:
+            if (choice == 'Y' or choice == 'y'):
+                break
+            elif (choice == 'N' or choice == 'n'):
+                exit()
+            else:
+                print("Choice invalid")
+                continue
+    
 
 
 
