@@ -15,6 +15,13 @@ MPO_FILE_PATH = "MP01 Checker.txt"
 
 def start():
     processes = []
+    # Debug stuff
+    # processes = [
+    #             Process(1, 2, 4, 4),
+    #             Process(2, 5, 7, 3),
+    #             Process(3, 8, 3, 2),
+    #             Process(4, 9, 2, 1),]
+
     # Im not using this code since i may get grade deduction
     # Ill re-integrate this code once im out of OS LAB
 
