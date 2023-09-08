@@ -33,7 +33,7 @@ class Base_manager(object):
                     break
             
             # print(f"Process ID: {i.id:<5} Start: {first_occurance:< 5} End: {last_occurance:<5}")
-            process_data.append([i.id, last_occurance - i.arrival, last_occurance - i.arrival - i.burst])
+            process_data.append([f"P{i.id}", last_occurance - i.arrival, last_occurance - i.arrival - i.burst])
         
         turnover_sum = 0
         waiting_sum = 0
